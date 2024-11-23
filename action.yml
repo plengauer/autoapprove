@@ -21,7 +21,7 @@ runs:
           ghp_*) user="$(github /user | jq -r .login)";;
           *) ;;
         esac
-        ([ -n "${{ github.event.pull_request.number }}" ] && github /repos/plengauer/opentelemetry-bash/pulls/"${{ github.event.pull_request.number }}" | jq -s || github /repos/"${{ github.repository }}"/pulls?per_page=100) \
+        ([ -n "${{ github.event.pull_request.number }}" ] && github /repos/"${{ github.repository }}"/pulls/"${{ github.event.pull_request.number }}" | jq -s || github /repos/"${{ github.repository }}"/pulls?per_page=100) \
           | jq 'select(.state == "open") | select(.user.login == "${{ inputs.user_to_approve }}") | .number' \
           | while read -r pr_number; do
             [ "$(github /repos/plengauer/opentelemetry-bash/pulls/"$pr_number"/reviews | jq -r '.[] | select(.state == "APPROVED") | .id' | wc -l)" = "0" ] && echo "$pr_number" || true
