@@ -15,11 +15,11 @@ runs:
       run: |
         user="${{ inputs.user_to_approve }}"
         case "$user" in
-          ghp_*) user="$(curl -v --no-progress-meter -H "Authorization: token $user" https://api.github.com/user | jq -r .login)";;
+          ghp_*) user="$(curl -v --no-progress-meter -H "Authorization: token $user" https://api.github.com/user | tee /dev/stderr | jq -r .login)";;
           *) ;;
         esac
         github() {
-          curl -v --no-progress-meter -H "Authorization: token ${{ inputs.github_token }}" https://api.github.com"$@"
+          curl -v --no-progress-meter -H "Authorization: token ${{ inputs.github_token }}" https://api.github.com"$@" | tee /dev/stderr
         }
         ([ -n "${{ github.event.pull_request.number }}" ] && github /repos/"${{ github.repository }}"/pulls/"${{ github.event.pull_request.number }}" | jq -s || github /repos/"${{ github.repository }}"/pulls?per_page=100) \
           | jq 'select(.state == "open") | select(.user.login == "${{ inputs.user_to_approve }}") | .number' \
