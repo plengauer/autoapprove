@@ -3,14 +3,12 @@ name: Autoapprove
 on:
   pull_request:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * 0'
 
 jobs:
   approve:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      pull-requests: write
     steps:
       - uses: plengauer/autoapprove@main
         with:
