@@ -22,7 +22,7 @@ runs:
           curl --no-progress-meter -H "Authorization: token ${{ inputs.github_token }}" https://api.github.com"$@"
         }
         ([ -n "${{ github.event.pull_request.number }}" ] && github /repos/"${{ github.repository }}"/pulls/"${{ github.event.pull_request.number }}" | jq -s || github /repos/"${{ github.repository }}"/pulls?per_page=100) \
-          | jq '.[] | select(.state == "open") | select(.user.login == "${{ inputs.user_to_approve }}") | .number' \
+          | jq '.[] | select(.state == "open") | select(.user.login == "$user") | .number' \
           | while read -r pr_number; do
             [ "$(github /repos/"${{ github.repository }}"/pulls/"$pr_number"/reviews | jq -r '.[] | select(.state == "APPROVED") | .id' | wc -l)" = "0" ] && echo "$pr_number" || true
           done | while read -r pr_number; do
