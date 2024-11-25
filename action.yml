@@ -19,7 +19,7 @@ runs:
           *) ;;
         esac
         github() {
-          curl -v --no-progress-meter -H "Authorization: token ${{ inputs.github_token }}" https://api.github.com"$@"
+          curl --no-progress-meter -H "Authorization: token ${{ inputs.github_token }}" https://api.github.com"$@"
         }
         ([ -n "${{ github.event.pull_request.number }}" ] && github /repos/"${{ github.repository }}"/pulls/"${{ github.event.pull_request.number }}" | jq -s || github /repos/"${{ github.repository }}"/pulls?per_page=100) \
           | jq '.[] | select(.state == "open") | select(.user.login == "'"$user"'") | .number' \
