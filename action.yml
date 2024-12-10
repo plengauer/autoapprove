@@ -1,5 +1,5 @@
 name: 'autoapprove'
-description: 'automatically approve PRs'
+description: 'Automatically approve PRs'
 inputs:
   github_token:
     description: 'API Token for Github'
