@@ -26,5 +26,6 @@ runs:
           | while read -r pr_number; do
             [ "$(github /repos/"${{ github.repository }}"/pulls/"$pr_number"/reviews | jq -r '.[] | select(.state == "APPROVED") | .id' | wc -l)" = "0" ] && echo "$pr_number" || true
           done | while read -r pr_number; do
+            echo "::notice ::Autoapproving https://github.com/${{ github.repository }}/pulls/$pr_number"
             github /repos/"${{ github.repository }}"/pulls/"$pr_number"/reviews -d '{"event":"APPROVE","body":"This is an automated approval."}'
           done
