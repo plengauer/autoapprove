@@ -6,7 +6,7 @@ on:
     types: [opened]
   roles: all
 rate-limit:
-  max: 2
+  max: 1
   window: 60
 permissions:
   contents: read
