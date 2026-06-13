@@ -34,7 +34,7 @@ jobs:
           gh aw compile --approve
       - id: push
         run: |
-          f [ -z "$(git status --porcelain)" ]; then exit 0; fi
+          if [ -z "$(git status --porcelain)" ]; then exit 0; fi
           user_name="$(gh api user --jq .login)"
           user_id="$(gh api user --jq .id)"
           git config user.name "$user_name"
