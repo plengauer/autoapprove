@@ -32,9 +32,9 @@ jobs:
         run: |
           gh extension install github/gh-aw
           gh aw compile --approve
+          git status .
       - id: push
         run: |
-          set -x
           if git diff --quiet HEAD; then exit 0; fi
           user_name="$(gh api user --jq .login)"
           user_id="$(gh api user --jq .id)"
