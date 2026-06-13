@@ -34,6 +34,7 @@ jobs:
           gh aw compile --approve
       - id: push
         run: |
+          set -x
           if git diff --quiet HEAD; then exit 0; fi
           user_name="$(gh api user --jq .login)"
           user_id="$(gh api user --jq .id)"
