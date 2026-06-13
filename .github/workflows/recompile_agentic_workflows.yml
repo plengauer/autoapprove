@@ -33,6 +33,8 @@ jobs:
           gh extension install github/gh-aw
           gh aw compile --approve
           git status .
+          git diff HEAD && echo yes || echo no
+          git status --porcelain && echo yes || echo no
       - id: push
         run: |
           if git diff --quiet HEAD; then exit 0; fi
