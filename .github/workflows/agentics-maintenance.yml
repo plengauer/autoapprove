@@ -200,7 +200,7 @@ jobs:
       - name: Install gh-aw
         uses: github/gh-aw-actions/setup-cli@aeaf7fe417d183340479027223c9a1c16464bdbc # v0.91.0
         with:
-          version: v0.81.6
+          version: v0.89.21
 
       - name: Run operation
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -365,7 +365,7 @@ jobs:
       - name: Install gh-aw
         uses: github/gh-aw-actions/setup-cli@aeaf7fe417d183340479027223c9a1c16464bdbc # v0.91.0
         with:
-          version: v0.81.6
+          version: v0.89.21
 
       - name: Create missing labels
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -419,7 +419,7 @@ jobs:
       - name: Install gh-aw
         uses: github/gh-aw-actions/setup-cli@aeaf7fe417d183340479027223c9a1c16464bdbc # v0.91.0
         with:
-          version: v0.81.6
+          version: v0.89.21
 
       - name: Restore activity report logs cache
         id: activity_report_logs_cache
@@ -532,7 +532,7 @@ jobs:
       - name: Install gh-aw
         uses: github/gh-aw-actions/setup-cli@aeaf7fe417d183340479027223c9a1c16464bdbc # v0.91.0
         with:
-          version: v0.81.6
+          version: v0.89.21
 
       - name: Restore forecast report logs cache
         id: forecast_report_logs_cache
@@ -679,7 +679,7 @@ jobs:
       - name: Install gh-aw
         uses: github/gh-aw-actions/setup-cli@aeaf7fe417d183340479027223c9a1c16464bdbc # v0.91.0
         with:
-          version: v0.81.6
+          version: v0.89.21
 
       - name: Validate workflows and file issue on findings
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
